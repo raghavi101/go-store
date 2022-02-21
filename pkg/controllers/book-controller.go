@@ -17,8 +17,10 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	newBooks := models.GetAllBooks()
 	res, _ := json.Marshal(newBooks)
 	w.Header().Set("Content-Type", "pkglication/json")
+	fmt.Fprintf(w, "Welcome to crud api")
 	w.WriteHeader(http.StatusOK)
 	w.Write(res)
+	fmt.Fprintf(w, "Welcome to crud api")
 }
 
 func GetBookById(w http.ResponseWriter, r *http.Request) {
