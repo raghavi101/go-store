@@ -1,3 +1,5 @@
+#docker-compose build --no-cache
+#docker-compose up
 #docker exec -it test_db /bin/bash
 
 version: '3.7'
