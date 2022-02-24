@@ -1,7 +1,11 @@
 package models
 
 import (
+	"log"
+	"os"
+
 	"github.com/jinzhu/gorm"
+	"github.com/joho/godotenv"
 	"github.com/raghavi101/go-store/pkg/config"
 )
 
@@ -15,7 +19,11 @@ type Book struct {
 }
 
 func init() {
-	config.Connect()
+	if err := godotenv.Load(); err != nil {
+		log.Print("sad .env file not found")
+	}
+
+	config.Connect(os.Getenv("DB_DRIVER"), os.Getenv("DB_USER"), os.Getenv("DB_PASSWORD"), os.Getenv("DB_PORT"), os.Getenv("DB_HOST"), os.Getenv("DB_NAME"))
 	db = config.GetDB()
 	db.AutoMigrate(&Book{})
 }
