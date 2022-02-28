@@ -12,15 +12,15 @@ var (
 	db *gorm.DB
 )
 
-func Connect(Dbdriver, DbUser, DbPassword, DbPort, DbHost, DbName string) {
+func Connect(DbUser, DbPassword, DbPort, DbHost, DbName string) {
 
 	DBURL := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8&parseTime=True&loc=Local", DbUser, DbPassword, DbHost, DbPort, DbName)
-	d, err := gorm.Open(Dbdriver, DBURL)
+	d, err := gorm.Open("mysql", DBURL)
 	if err != nil {
-		fmt.Printf("Cannot connect to %s database", Dbdriver)
+		fmt.Printf("Cannot connect to database")
 		log.Fatal("This is the error:", err)
 	} else {
-		fmt.Printf("We are connected to the %s database \n", Dbdriver)
+		fmt.Printf("We are connected to the database \n")
 	}
 
 	db = d
