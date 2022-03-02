@@ -29,6 +29,7 @@ func GetBookById(w http.ResponseWriter, r *http.Request) {
 	ID, err := strconv.ParseInt(bookId, 0, 0)
 	if err != nil {
 		fmt.Println("error while parsing")
+		w.WriteHeader(http.StatusNotFound)
 	}
 	bookDetails, _ := models.GetBookById(ID)
 	res, _ := json.Marshal(bookDetails)
